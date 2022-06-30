@@ -73,9 +73,8 @@ module Fastlane
 
         # Tag's format is v2.3.4-5-g7685948
         # See git describe man page for more info
-        tag_name = tag.split('-')[0...-2].join('-').strip
-        parsed_version = tag_name.match(params[:tag_version_match])
-        UI.message("tag name: " + tag_name)
+        parsed_version = tag.match(params[:tag_version_match])
+        UI.message("tag name: " + tag)
         UI.message("parsed_version: " + parsed_version)
 
         if parsed_version.nil?
@@ -85,7 +84,7 @@ module Fastlane
         version = parsed_version[0]
         # Get a hash of last version tag
         hash = get_last_tag_hash(
-          tag_name: tag_name,
+          tag_name: tag,
           debug: params[:debug]
         )
 
