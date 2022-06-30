@@ -193,6 +193,13 @@ module Fastlane
             next if scopes_to_ignore.include?(scope) #=> true
           end
 
+          unless commit[:type].nil?
+            # we need to inspect to see if that type is one of the included types
+            type = commit[:type]
+            types_to_include = params[:include_types]
+            next if types_to_include.include?(type) #=> true
+          end
+
           commit[:hash] = splitted[2]
           commit[:short_hash] = splitted[3]
           commit[:author_name] = splitted[4]
@@ -285,6 +292,13 @@ module Fastlane
             key: :ignore_scopes,
             description: "To ignore certain scopes when calculating releases",
             default_value: [],
+            type: Array,
+            optional: true
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :include_types,
+            description: "Array of included types, e.g feat, fix",
+            default_value: ["feat", "fix"],
             type: Array,
             optional: true
           ),
