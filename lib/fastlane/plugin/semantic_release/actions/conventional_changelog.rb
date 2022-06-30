@@ -197,7 +197,7 @@ module Fastlane
             # we need to inspect to see if that type is one of the included types
             type = commit[:type]
             types_to_include = params[:include_types]
-            next if types_to_include.include?(type) #=> true
+            next if types_to_include.include?(type) == false #=> true
           end
 
           commit[:hash] = splitted[2]
