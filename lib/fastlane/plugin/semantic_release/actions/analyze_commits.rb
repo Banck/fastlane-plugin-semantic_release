@@ -75,6 +75,8 @@ module Fastlane
         # See git describe man page for more info
         tag_name = tag.split('-')[0...-2].join('-').strip
         parsed_version = tag_name.match(params[:tag_version_match])
+        UI.message("tag name: " + tag_name)
+        UI.message("parsed_version: " + parsed_version)
 
         if parsed_version.nil?
           UI.user_error!("Error while parsing version from tag #{tag_name} by using tag_version_match - #{params[:tag_version_match]}. Please check if the tag contains version as you expect and if you are using single brackets for tag_version_match parameter.")
