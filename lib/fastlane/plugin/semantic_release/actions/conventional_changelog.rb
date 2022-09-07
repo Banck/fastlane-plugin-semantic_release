@@ -54,7 +54,7 @@ module Fastlane
         if params[:display_title] == true
           # title = version
           title = " #{params[:title]}" if params[:title]
-          title += " (#{Time.now.strftime("%d/%m/%Y")})"
+          title += " (#{Date.today.strftime("%d/%m/%Y")})"
 
           result = style_text(title, format, "title").to_s
           result += "\n\n"
